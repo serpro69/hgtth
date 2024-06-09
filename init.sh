@@ -2,10 +2,13 @@
 
 # Help message
 help_message() {
-    cat <<EOF
+  cat <<EOF
 Usage: $(basename "$0") TARGET_HOST
 
 Provisions a new user with sudo and SSH access on a target server.
+
+Requirements:
+  - sshpass
 
 Arguments:
   TARGET_HOST   The hostname or IP address of the target server.
@@ -75,6 +78,13 @@ echo
 # Create a script to be executed on the target server
 read -r -d '' TARGET_SCRIPT << EOF
 #!/bin/bash
+
+set -euxE
+
+if [ "\$EUID" -ne 0 ]; then
+  echo "This script must be run as root."
+  exit 1
+fi
 
 # Install sudo
 echo "Installing packages..."
