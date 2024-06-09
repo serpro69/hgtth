@@ -2,7 +2,7 @@
 
 This is an attempt to organize *my* homelab setup under a single Infrastructure-as-Code repo. It provides a single entry-point to get up-and-running from a "base" OS installation, to a fully-working homelab cluster. My cluster is currently based on [Proxmox VE](https://www.proxmox.com/en/proxmox-virtual-environment/overview), but since it's just a "layer" on top of Debian, a lot of the configs here can be "applied" to Debian-like servers as well.
 
-> [!WANING]
+> [!WARNING]
 > This is my own setup and it may *NOT* be suitable for you.
 > Do not trust and run the code blindly, but rather use it as an inspiration for your own homelabbing endeavours.
 > I take no responsibility for your own actions, broken systems, and hours spent on debugging.

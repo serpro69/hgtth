@@ -90,13 +90,17 @@ fi
 echo "Installing packages..."
 apt-get install -y sudo
 
-# Create a new user
-echo "Creating user $NEW_USER..."
-useradd -m -s /bin/bash $NEW_USER
+if id "$NEW_USER" &>/dev/null; then
+  echo "User $NEW_USER already exists..."
+else
+  # Create a new user
+  echo "Creating user $NEW_USER..."
+  useradd -m -s /bin/bash $NEW_USER
 
-# Set password for the new user
-echo "Setting password for user $NEW_USER..."
-echo "$NEW_USER:$NEW_USER_PASS" | chpasswd
+  # Set password for the new user
+  echo "Setting password for user $NEW_USER..."
+  echo "$NEW_USER:$NEW_USER_PASS" | chpasswd
+fi
 
 # Add the new user to sudo group
 echo "Adding $NEW_USER to sudo group..."
